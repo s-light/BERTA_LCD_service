@@ -91,15 +91,15 @@ class LCDManager():
                 self.lcd = ablib.Daisy24(0, self.config['lcd_address'])
             except Exception as e:
                 raise
-            else:
                 print(""" Check to run your script with SUDO.""")
                 ablib_available = False
 
     def _write_lcd(self):
-        self.lcd.setcurpos(0, 0)
-        self.lcd.putstring('Hello World :-)')
-        self.lcd.setcurpos(0, 1)
-        self.lcd.putstring('sunshine :-)')
+        if ablib_available:
+            self.lcd.setcurpos(0, 0)
+            self.lcd.putstring('Hello World :-)')
+            self.lcd.setcurpos(0, 1)
+            self.lcd.putstring('sunshine :-)')
 
     def system_run(self):
         """Run Main Loop."""
