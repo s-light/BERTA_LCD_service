@@ -118,9 +118,10 @@ class LCDManager():
             self.lcd.putstring('Hello World :-)')
             # '-----_____-----_'
             # '10.05.  12:00:00'
-            timestring = strftime("%d.%m.  %H:%M:%S", gmtime())
+            timestring = time.strftime("%d.%m.  %H:%M:%S")
             self.lcd.setcurpos(0, 1)
-            self.lcd.putstring('sunshine :-)')
+            self.lcd.putstring(timestring)
+            # self.lcd.putstring('sunshine :-)')
 
     def system_run(self):
         """Run Main Loop."""
