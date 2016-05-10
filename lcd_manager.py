@@ -70,6 +70,7 @@ class LCDManager():
         # print("my_config.config: {}".format(self.my_config.config))
         self.config = self.my_config.config
         # print("config: {}".format(self.config))
+        self._init_lcd()
 
     def __del__(self):
         """Clean up."""
