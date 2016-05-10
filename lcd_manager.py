@@ -116,6 +116,9 @@ class LCDManager():
         if self.ablib_available:
             self.lcd.setcurpos(0, 0)
             self.lcd.putstring('Hello World :-)')
+            # '-----_____-----_'
+            # '10.05.  12:00:00'
+            timestring = strftime("%d.%m.  %H:%M:%S", gmtime())
             self.lcd.setcurpos(0, 1)
             self.lcd.putstring('sunshine :-)')
 
