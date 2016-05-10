@@ -16,7 +16,7 @@ Description= service to display time and network information on ACME Systems - B
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/light/BERTA_LCD_service/lcd_manager.py /home/light/BERTA_LCD_service/config.json
+ExecStart=/usr/bin/python /home/light/BERTA_LCD_service/lcd_manager.py /home/light/BERTA_LCD_service/config.json
 StandardOutput=null
 
 [Install]
