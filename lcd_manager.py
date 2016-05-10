@@ -86,8 +86,9 @@ class LCDManager():
     #
 
     def _init_lcd(self):
+        print("init lcd:")
         if ablib_available:
-            print("init lcd:")
+            print("ablib available.")
             try:
                 if ablib.existI2Cdevice(0, self.config['lcd_address']):
                     i2c_address = self.config['lcd_address']
@@ -100,6 +101,8 @@ class LCDManager():
                 raise
                 print(""" Check to run your script with SUDO.""")
                 ablib_available = False
+        else:
+            print("ablib missing!!!!!!!")
 
     def _write_lcd(self):
         if ablib_available:
