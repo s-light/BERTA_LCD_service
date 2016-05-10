@@ -1,0 +1,24 @@
+# based on examples found at
+# https://learn.adafruit.com/running-programs-automatically-on-your-tiny-computer/systemd-writing-and-enabling-a-service
+# https://medium.com/@johannes_gehrs/getting-started-with-systemd-on-debian-jessie-e024758ca63d
+
+# copy to target with:
+#   sudo cp lcd_manager.service /lib/systemd/system/lcd_manager.service
+# enable service
+#   sudo systemctl enable lcd_manager.service
+# start
+#   sudo systemctl start lcd_manager.service
+# check status
+#   sudo systemctl status lcd_manager.service
+
+[Unit]
+Description= service to display time and network information on ACME Systems - BERTA Board I2C display.
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/light/BERTA_LCD_service/lcd_manager.py /home/light/BERTA_LCD_service/config.json
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+Alias=lcd_manager.service
