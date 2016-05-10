@@ -87,8 +87,15 @@ class LCDManager():
 
     def _init_lcd(self):
         if ablib_available:
+            print("init lcd:")
             try:
-                self.lcd = ablib.Daisy24(0, self.config['lcd_address'])
+                if ablib.existI2Cdevice(0, self.config['lcd_address']):
+                    i2c_address = self.config['lcd_address']
+                else:
+                    i2c_address = 0x3F
+                print("  i2c_address:{}".format(i2c_address))
+                self.lcd = ablib.Daisy24(0, i2c_address)
+                print("  lcd:{}".format(self.lcd))
             except Exception as e:
                 raise
                 print(""" Check to run your script with SUDO.""")
