@@ -29,6 +29,7 @@ import time
 from configdict import ConfigDict
 
 # http://wiki.python-forum.de/Import
+ablib_available = False
 try:
     import ablib
     ablib_available = True
@@ -65,6 +66,12 @@ class LCDManager():
 
     def __init__(self, filename):
         """init."""
+        self.ablib_available = False
+        global ablib_available
+        print("  ablib_available:{}".format(ablib_available))
+        print("  self.ablib_available:{}".format(self.ablib_available))
+        self.ablib_available = ablib_available
+        print("  self.ablib_available:{}".format(self.ablib_available))
         # read config file:
         self.my_config = ConfigDict(self.default_config, filename)
         # print("my_config.config: {}".format(self.my_config.config))
@@ -88,7 +95,7 @@ class LCDManager():
 
     def _init_lcd(self):
         print("init lcd:")
-        if ablib_available:
+        if self.ablib_available:
             print("ablib available.")
             try:
                 if ablib.existI2Cdevice(0, self.config['lcd_address']):
@@ -106,7 +113,7 @@ class LCDManager():
             print("ablib missing!!!!!!!")
 
     def _write_lcd(self):
-        if ablib_available:
+        if self.ablib_available:
             self.lcd.setcurpos(0, 0)
             self.lcd.putstring('Hello World :-)')
             self.lcd.setcurpos(0, 1)
