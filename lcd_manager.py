@@ -122,7 +122,14 @@ class LCDManager():
     def system_run(self):
         """Run Main Loop."""
         print("Start Main Loop: TODO!!!")
-        self._write_lcd()
+        flag_run = True
+        try:
+            while flag_run:
+                self._write_lcd()
+                time.sleep(0.5)
+        except KeyboardInterrupt:
+            print("\nstop script.")
+            flag_run = False
 
 
 ##########################################
