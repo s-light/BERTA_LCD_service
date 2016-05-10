@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 # coding=utf-8
 
 """
@@ -137,7 +137,7 @@ if __name__ == '__main__':
         filename :{}
     '''.format(filename))
 
-    my_lcdmanager = DeviceManager(filename)
+    my_lcdmanager = LCDManager(filename)
 
     my_lcdmanager.system_run()
 
