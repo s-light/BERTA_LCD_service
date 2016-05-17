@@ -82,8 +82,8 @@ class LCDManager():
         self.flag_run = False
 
         # setup termination and interrupt handling:
-        signal.signal(signal.SIGINT, self.exit_gracefully)
-        signal.signal(signal.SIGTERM, self.exit_gracefully)
+        signal.signal(signal.SIGINT, self._exit_helper)
+        signal.signal(signal.SIGTERM, self._exit_helper)
 
     def __del__(self):
         """Clean up."""
