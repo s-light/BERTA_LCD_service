@@ -25,6 +25,7 @@ import sys
 import os
 import array
 import time
+import signal
 
 from configdict import ConfigDict
 
@@ -78,6 +79,11 @@ class LCDManager():
         self.config = self.my_config.config
         # print("config: {}".format(self.config))
         self._init_lcd()
+        self.flag_run = False
+
+        # setup termination and interrupt handling:
+        signal.signal(signal.SIGINT, self.exit_gracefully)
+        signal.signal(signal.SIGTERM, self.exit_gracefully)
 
     def __del__(self):
         """Clean up."""
@@ -86,6 +92,10 @@ class LCDManager():
             self.lcd.setcurpos(0, 0)
             self.lcd.putstring('See you :-)')
         pass
+
+    def _exit_helper(self):
+        """Stop loop."""
+        self.flag_run = True
 
     ##########################################
     #
@@ -130,14 +140,14 @@ class LCDManager():
     def system_run(self):
         """Run Main Loop."""
         print("Start Main Loop: TODO!!!")
-        flag_run = True
+        self.flag_run = True
         try:
-            while flag_run:
+            while self.flag_run:
                 self._write_lcd()
                 time.sleep(0.5)
         except KeyboardInterrupt:
             print("\nstop script.")
-            flag_run = False
+            self.flag_run = False
 
 
 ##########################################
