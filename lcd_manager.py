@@ -81,6 +81,10 @@ class LCDManager():
 
     def __del__(self):
         """Clean up."""
+        # print a goodby message:
+        if self.ablib_available:
+            self.lcd.setcurpos(0, 0)
+            self.lcd.putstring('See you :-)')
         pass
 
     ##########################################
